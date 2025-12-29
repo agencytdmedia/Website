@@ -4,244 +4,286 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TDMedia | Modern Ad Agency</title>
-    <!-- Tailwind CSS via CDN is perfect for GitHub Pages -->
+    <!-- Tailwind via CDN (GitHub Pages friendly) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet" />
+
     <style>
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.125);
-            --accent-primary: #3b82f6;
-            --accent-secondary: #8b5cf6;
+            --accent-primary: #023aff;
+            --accent-primary-deep: #071c7a;
+            --accent-cyan: #22d3ee;
+            --bg: #030712;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-bg-strong: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.12);
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #030712;
+            background-color: var(--bg);
             color: #f8fafc;
-            /* Prevent horizontal scroll issues on mobile from blobs */
             overflow-x: hidden;
             scroll-behavior: smooth;
             width: 100%;
         }
 
-        .glass-panel {
+        /* Glass primitives */
+        .glass {
             background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
             border-radius: 24px;
         }
 
-        .glass-nav {
-            background: rgba(3, 7, 18, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .blob {
-            position: fixed;
-            width: 50vw;
-            height: 50vw;
-            max-width: 500px;
-            max-height: 500px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%);
-            filter: blur(80px);
-            border-radius: 50%;
-            z-index: -1;
-            pointer-events: none; /* Critical so blobs don't block clicks */
+        .glass-strong {
+            background: var(--glass-bg-strong);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 24px;
         }
 
         .text-gradient {
-            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            background: linear-gradient(90deg, #ffffff 0%, #c7d2fe 18%, #8ab2ff 45%, #22d3ee 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .btn-glass {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .chip {
+            background: rgba(2, 58, 255, 0.12);
+            border: 1px solid rgba(2, 58, 255, 0.35);
+            box-shadow: 0 20px 80px -45px rgba(2, 58, 255, 0.55);
         }
 
-        .btn-glass:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .btn-primary {
+            background: linear-gradient(90deg, rgba(2, 58, 255, 1), rgba(34, 211, 238, 0.9));
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 20px 50px -30px rgba(2, 58, 255, 0.85);
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.25s;
+        }
+
+        .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px -10px rgba(59, 130, 246, 0.5);
+            filter: brightness(1.04);
         }
 
-        /* Hide scrollbar but keep functionality */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.25s;
         }
-        ::-webkit-scrollbar-track {
-            background: #030712;
+
+        .btn-ghost:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.07);
         }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 10px;
+
+        .hero-bg {
+            position: relative;
+            isolation: isolate;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #334155;
+
+        @keyframes heroGlow {
+            0% { background-position: 50% 20%, 18% 18%, 88% 62%, 0% 0%; transform: scale(1); }
+            50% { background-position: 56% 24%, 24% 28%, 78% 54%, 0% 0%; transform: scale(1.02); }
+            100% { background-position: 48% 18%, 16% 26%, 90% 66%, 0% 0%; transform: scale(1); }
         }
+
+        @keyframes gridDrift {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 84px 84px, 84px 84px; }
+        }
+
+        .hero-bg::before {
+            content: "";
+            position: absolute;
+            inset: -80px 0 -120px 0;
+            z-index: -2;
+            background:
+                radial-gradient(700px 380px at 50% 25%, rgba(2, 58, 255, 0.20), transparent 60%),
+                radial-gradient(520px 320px at 20% 20%, rgba(34, 211, 238, 0.11), transparent 55%),
+                radial-gradient(560px 380px at 85% 65%, rgba(2, 58, 255, 0.10), transparent 60%),
+                linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.75));
+            background-repeat: no-repeat;
+            background-size: 140% 140%, 150% 150%, 150% 150%, 100% 100%;
+            filter: saturate(1.05);
+            animation: heroGlow 18s ease-in-out infinite;
+        }
+
+        .hero-bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.25;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.22) 1px, transparent 1px);
+            background-size: 84px 84px;
+            mask-image: radial-gradient(700px 420px at 50% 30%, black 40%, transparent 70%);
+            animation: gridDrift 28s linear infinite;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
     </style>
 </head>
+
 <body class="antialiased">
+    <!-- NAV -->
+    <nav class="fixed top-5 left-1/2 z-50 w-[min(1100px,calc(100%-24px))] -translate-x-1/2">
+        <div class="glass-strong px-4 py-3 md:px-5">
+            <div class="flex items-center justify-between gap-3">
+                <a href="#" class="flex items-center">
+                    <img src="tmp5js368bu (1).webp" alt="TD Media Logo" class="h-8 md:h-10 w-auto">
+                </a>
 
-    <!-- Interactive Background Blobs -->
-    <div id="blob1" class="blob" style="top: -10%; left: -10%;"></div>
-    <div id="blob2" class="blob" style="bottom: -10%; right: -10%; background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%);"></div>
+                <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+                    <a href="#services" class="hover:text-white transition-colors">Services</a>
+                    <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+                    <a href="#case-studies" class="hover:text-white transition-colors">Case Studies</a>
+                    <a href="#about" class="hover:text-white transition-colors">About</a>
+                </div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-2xl font-extrabold tracking-tighter">
-                TD<span class="text-gradient">MEDIA</span>
+                <div class="flex items-center gap-2">
+                    <a href="#contact" class="hidden sm:inline-flex rounded-full px-4 py-2 text-sm font-semibold text-white/85 btn-ghost">
+                        Contact
+                    </a>
+                    <a href="https://calendly.com" target="_blank" class="rounded-full px-4 py-2 text-sm font-semibold text-white btn-primary">
+                        Try for Free
+                    </a>
+                </div>
             </div>
-            
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
-                <a href="#services" class="hover:text-white transition-colors">Services</a>
-                <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
-            </div>
-
-            <a href="https://calendly.com" target="_blank" class="px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-sm font-bold transition-all transform hover:scale-105 active:scale-95">
-                Book a Call
-            </a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative pt-40 pb-20 px-6">
-        <div class="max-w-5xl mx-auto text-center">
-            <div class="inline-block px-4 py-1.5 mb-6 glass-panel text-xs font-semibold tracking-widest uppercase text-blue-400">
-                Leading Advertising Agency
+    <!-- HERO -->
+    <section class="hero-bg pt-40 pb-20 px-6">
+        <div class="relative mx-auto max-w-6xl">
+            <!-- Map Overlay -->
+            <svg class="pointer-events-none absolute left-1/2 top-10 w-[1200px] -translate-x-1/2 opacity-[0.14]" viewBox="0 0 1200 520" fill="none">
+                <defs>
+                    <radialGradient id="mapFill" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 240) rotate(90) scale(280 520)">
+                        <stop stop-color="rgba(255,255,255,0.55)" />
+                        <stop offset="0.55" stop-color="rgba(157,183,255,0.25)" />
+                        <stop offset="1" stop-color="rgba(34,211,238,0.16)" />
+                    </radialGradient>
+                    <filter id="f" x="0" y="0" width="1200" height="520" filterUnits="userSpaceOnUse">
+                        <feGaussianBlur stdDeviation="10" />
+                    </filter>
+                </defs>
+                <g filter="url(#f)">
+                    <path d="M180 290c40-70 170-120 270-110 85 8 115 40 160 48 45 8 95-12 120-38 30-32 52-70 110-80 70-12 165 34 230 36 65 2 120-34 170-50 55-18 115-10 160 10 30 14 60 40 90 56 0 0-20 70-110 105-100 38-195 18-270-4-54-16-92-10-140 18-56 32-84 70-150 92-86 28-170 4-240-26-48-20-88-14-140 6-96 38-210 30-270-8-64-40-70-95-70-95z" fill="url(#mapFill)" opacity="0.32"/>
+                </g>
+            </svg>
+
+            <div class="text-center relative z-10">
+                <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold tracking-wide text-cyan-100 chip">
+                    <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10 border border-white/10">✦</span>
+                    Powered by Performance + AI Systems
+                </div>
+
+                <h1 class="mt-8 text-4xl md:text-7xl font-extrabold leading-[1.08] tracking-tight">
+                    From ad spend to
+                    <span class="text-gradient"> measurable growth</span>
+                </h1>
+
+                <p class="mt-6 text-lg md:text-xl text-slate-300/80 max-w-2xl mx-auto leading-relaxed">
+                    We help e-commerce & service brands scale with data-driven Meta Ads, Google Search and conversion-focused creative.
+                </p>
+
+                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <a href="https://calendly.com" target="_blank" class="w-full sm:w-auto rounded-2xl px-7 py-4 text-sm font-bold text-white btn-primary">
+                        Start Free Trial →
+                    </a>
+                    <a href="#case-studies" class="w-full sm:w-auto rounded-2xl px-7 py-4 text-sm font-bold text-white btn-ghost">
+                        Watch Demo
+                    </a>
+                </div>
             </div>
-            <h1 class="text-4xl md:text-7xl font-extrabold mb-8 leading-[1.1]">
-                Scale Your Brand To <br>
-                <span class="text-gradient">New Heights</span>
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-                We help e-commerce & service brands dominate their market through data-driven Meta Ads and high-converting creative strategies.
-            </p>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-                <a href="#services" class="w-full md:w-auto px-8 py-4 rounded-2xl bg-white text-black text-center font-bold hover:bg-slate-200 transition-all">
-                    View Case Studies
-                </a>
-                <a href="https://calendly.com" class="w-full md:w-auto px-8 py-4 rounded-2xl btn-glass text-center font-bold text-white">
-                    Our Process
-                </a>
+
+            <!-- Stats -->
+            <div class="mt-14 grid gap-4 md:grid-cols-3 relative z-10">
+                <div class="glass p-6">
+                    <div class="text-sm text-slate-300">Managed ad spend</div>
+                    <div class="mt-2 text-3xl font-extrabold tracking-tight">€3.4M+</div>
+                    <div class="mt-2 text-sm text-slate-400">Across Meta, Google & TikTok</div>
+                </div>
+                <div class="glass p-6">
+                    <div class="text-sm text-slate-300">Avg. CPA reduction</div>
+                    <div class="mt-2 text-3xl font-extrabold tracking-tight">-24% to -42%</div>
+                    <div class="mt-2 text-sm text-slate-400">After optimization period</div>
+                </div>
+                <div class="glass p-6">
+                    <div class="text-sm text-slate-300">Reporting cadence</div>
+                    <div class="mt-2 text-3xl font-extrabold tracking-tight">Weekly</div>
+                    <div class="mt-2 text-sm text-slate-400">Actionable data insights</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Brands Logo Slider -->
-    <section class="py-12 border-y border-white/5 bg-white/[0.01]">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 grayscale">
-                <span class="text-lg font-bold">ECOMM-X</span>
-                <span class="text-lg font-bold">LUXE-FLOW</span>
-                <span class="text-lg font-bold">GROWTH-CO</span>
-                <span class="text-lg font-bold">VIBE-MEDIA</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Bento Grid -->
-    <section id="services" class="py-24 px-6">
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-6 relative">
         <div class="max-w-7xl mx-auto">
             <div class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Core <span class="text-gradient">Expertise</span></h2>
-                <p class="text-slate-400">Holistic digital growth powered by advanced algorithms.</p>
+                <h2 class="text-3xl md:text-4xl font-bold">Our Core <span class="text-gradient">Expertise</span></h2>
+                <p class="mt-3 text-slate-400">Holistic digital growth powered by experimentation.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Meta Ads -->
-                <div class="md:col-span-2 glass-panel p-8 md:p-12 hover:border-blue-500/50 transition-all group cursor-default">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <div class="md:col-span-2 glass p-8 md:p-12 hover:border-blue-500/50 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-[rgba(2,58,255,0.18)] border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Meta Advertising (FB & IG)</h3>
-                    <p class="text-slate-400 mb-6 leading-relaxed">Full-funnel management from creative direction to technical pixel setup. We specialize in scaling spends while maintaining high ROAS.</p>
+                    <h3 class="text-2xl font-bold mb-4">Meta Advertising</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">Full-funnel management from creative direction to technical pixel setup. We scale spend while protecting ROAS.</p>
                     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-300">
-                        <li class="flex items-center"><span class="text-blue-500 mr-2">✓</span> Dynamic Retargeting</li>
-                        <li class="flex items-center"><span class="text-blue-500 mr-2">✓</span> A/B Creative Testing</li>
-                        <li class="flex items-center"><span class="text-blue-500 mr-2">✓</span> Audience Research</li>
-                        <li class="flex items-center"><span class="text-blue-500 mr-2">✓</span> Scale Strategies</li>
+                        <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> A/B Creative Testing</li>
+                        <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Audience Research</li>
                     </ul>
                 </div>
 
                 <!-- TikTok Ads -->
-                <div class="glass-panel p-8 hover:border-purple-500/50 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
-                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <div class="glass p-8 hover:border-cyan-500/50 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-[rgba(34,211,238,0.12)] border border-white/10 flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform">
+                        <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                     </div>
                     <h3 class="text-xl font-bold mb-4">TikTok Ads</h3>
-                    <p class="text-slate-400 text-sm">Capturing the attention of Gen Z and Millennials with native, high-energy video content that feels like organic posts.</p>
-                </div>
-
-                <!-- Google Search -->
-                <div class="glass-panel p-8 hover:border-yellow-500/50 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-yellow-500/20 flex items-center justify-center mb-6 group-hover:-rotate-12 transition-transform">
-                        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Google Search</h3>
-                    <p class="text-slate-400 text-sm">Targeting high-intent buyers exactly when they are looking for your product or service.</p>
-                </div>
-
-                <!-- Email Marketing -->
-                <div class="md:col-span-2 glass-panel p-8 hover:border-green-500/50 transition-all flex flex-col md:flex-row items-center gap-8">
-                    <div class="flex-1">
-                        <h3 class="text-2xl font-bold mb-4">Email & SMS Marketing</h3>
-                        <p class="text-slate-400 leading-relaxed">Maximizing Customer Lifetime Value through automated flows and targeted retention campaigns.</p>
-                    </div>
-                    <div class="w-full md:w-48 h-32 bg-green-500/10 rounded-2xl border border-green-500/20 flex items-center justify-center">
-                        <div class="text-center">
-                            <span class="block text-green-400 font-bold text-2xl">+42%</span>
-                            <span class="text-xs text-green-500/70 uppercase">Avg. Revenue Lift</span>
-                        </div>
-                    </div>
+                    <p class="text-slate-400 text-sm">Creative-first campaigns designed to earn attention with native UGC assets.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
+    <!-- Pricing -->
     <section id="pricing" class="py-24 px-6 bg-white/[0.02]">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Simple, Scalable <span class="text-gradient">Pricing</span></h2>
-                <p class="text-slate-400">Tailored for brands ready to reach the next level.</p>
+                <h2 class="text-4xl font-extrabold">Simple, Scalable <span class="text-gradient">Pricing</span></h2>
             </div>
-
-            <div class="glass-panel p-8 md:p-12 relative overflow-hidden group">
+            <div class="glass p-8 md:p-12 relative overflow-hidden">
                 <div class="absolute top-0 right-0 p-4">
-                    <span class="bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Growth Plan</span>
+                    <span class="bg-blue-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-widest">Growth Plan</span>
                 </div>
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h3 class="text-3xl font-bold mb-2">Growth Partner</h3>
-                        <p class="text-slate-400 mb-6">Perfect for brands doing €10k - €50k / month.</p>
-                        <div class="text-5xl font-extrabold mb-8 tracking-tighter">€1,799<span class="text-lg text-slate-500 font-normal">/mo</span></div>
-                        <a href="https://calendly.com" target="_blank" class="block w-full py-4 text-center rounded-xl bg-white text-black font-bold hover:bg-blue-50 transition-all">Get Started Today</a>
+                        <h3 class="text-3xl font-extrabold mb-2">Growth Partner</h3>
+                        <p class="text-slate-400 mb-6">Brands doing €10k - €50k / month.</p>
+                        <div class="text-5xl font-extrabold mb-8 tracking-tighter">€1,799<span class="text-lg text-slate-500 font-semibold">/mo</span></div>
+                        <a href="https://calendly.com" target="_blank" class="block w-full py-4 text-center rounded-2xl text-sm font-extrabold text-white btn-primary">Get Started</a>
                     </div>
                     <ul class="space-y-4 text-slate-300">
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Dedicated Media Buyer
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Weekly Reporting & Strategy Calls
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Creative Direction & Ad Copy
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Unlimited Scale Support
-                        </li>
+                        <li class="flex items-start gap-3"><span class="text-cyan-400">✓</span> Dedicated Media Buyer</li>
+                        <li class="flex items-start gap-3"><span class="text-cyan-400">✓</span> Weekly Strategy Calls</li>
+                        <li class="flex items-start gap-3"><span class="text-cyan-400">✓</span> Ad Copy & Creative Direction</li>
                     </ul>
                 </div>
             </div>
@@ -249,66 +291,22 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-20 px-6 border-t border-white/5">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
-            <div>
-                <div class="text-2xl font-extrabold tracking-tighter mb-4">
-                    TD<span class="text-gradient">MEDIA</span>
-                </div>
-                <p class="text-slate-500 text-sm">© 2025 TDMedia. High performance ad agency.</p>
+    <footer class="py-16 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center">
+                <img src="tmp5js368bu (1).webp" alt="TD Media Logo" class="h-8 w-auto">
             </div>
-            <div class="flex flex-wrap justify-center gap-8 text-slate-400 text-sm">
-                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                <a href="mailto:hello@tdmedia.io" class="hover:text-white transition-colors">Contact Support</a>
+            <p class="text-slate-500 text-sm">© 2025 TDMedia. Built for performance.</p>
+            <div class="flex gap-8 text-slate-400 text-sm">
+                <a href="#" class="hover:text-white">Privacy</a>
+                <a href="#" class="hover:text-white">Terms</a>
+                <a href="mailto:hello@tdmedia.io" class="hover:text-white">Contact</a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Interactive Background Logic
-        const blob1 = document.getElementById('blob1');
-        const blob2 = document.getElementById('blob2');
-
-        // Throttle function to improve performance
-        function throttle(func, limit) {
-            let lastFunc;
-            let lastRan;
-            return function() {
-                const context = this;
-                const args = arguments;
-                if (!lastRan) {
-                    func.apply(context, args);
-                    lastRan = Date.now();
-                } else {
-                    clearTimeout(lastFunc);
-                    lastFunc = setTimeout(function() {
-                        if ((Date.now() - lastRan) >= limit) {
-                            func.apply(context, args);
-                            lastRan = Date.now();
-                        }
-                    }, limit - (Date.now() - lastRan));
-                }
-            }
-        }
-
-        document.addEventListener('mousemove', throttle((e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            
-            // Subtle movement - improved for performance
-            requestAnimationFrame(() => {
-                blob1.style.transform = `translate(${x * 0.03}px, ${y * 0.03}px)`;
-                blob2.style.transform = `translate(${x * -0.03}px, ${y * -0.03}px)`;
-            });
-        }, 10));
-
-        // Intersection Observer for scroll animations
-        const observerOptions = { 
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
+        // Smooth scroll reveal logic
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -316,12 +314,12 @@
                     entry.target.style.transform = "translateY(0)";
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.glass-panel').forEach(el => {
+        document.querySelectorAll('.glass').forEach(el => {
             el.style.opacity = "0";
-            el.style.transform = "translateY(30px)";
-            el.style.transition = "all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)";
+            el.style.transform = "translateY(20px)";
+            el.style.transition = "all 0.6s ease-out";
             observer.observe(el);
         });
     </script>
