@@ -19,6 +19,9 @@
             --glass-bg: rgba(255, 255, 255, 0.04);
             --glass-bg-strong: rgba(255, 255, 255, 0.06);
             --glass-border: rgba(255, 255, 255, 0.12);
+            /* New Button Colors */
+            --btn-grad-start: #0a47ff;
+            --btn-grad-end: #0029a3;
         }
 
         html, body {
@@ -64,27 +67,40 @@
             box-shadow: 0 20px 80px -45px rgba(2, 58, 255, 0.55);
         }
 
+        /* Improved Primary Button */
         .btn-primary {
-            background: linear-gradient(90deg, rgba(2, 58, 255, 1), rgba(34, 211, 238, 0.9));
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            box-shadow: 0 20px 50px -30px rgba(2, 58, 255, 0.85);
-            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.25s;
+            background: linear-gradient(135deg, var(--btn-grad-start), var(--btn-grad-end));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 10px 30px -10px rgba(2, 58, 255, 0.5),
+                inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            filter: brightness(1.04);
+            box-shadow: 
+                0 15px 40px -10px rgba(2, 58, 255, 0.7),
+                inset 0 1px 2px rgba(255, 255, 255, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
         }
 
         .btn-ghost {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.16);
-            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.25s;
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .btn-ghost:hover {
             transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .hero-bg {
@@ -165,8 +181,8 @@
                         <a href="#contact" class="hidden sm:inline-flex rounded-full px-4 py-2 text-sm font-semibold text-white/85 btn-ghost">
                             Contact
                         </a>
-                        <a href="https://calendly.com" target="_blank" class="rounded-full px-4 py-2 text-sm font-semibold text-white btn-primary">
-                            Try for Free
+                        <a href="https://calendly.com" target="_blank" class="rounded-full px-6 py-2 text-sm font-bold text-white btn-primary">
+                            Book a Call
                         </a>
                     </div>
                 </div>
@@ -202,19 +218,19 @@
                     </div>
 
                     <h1 class="mt-8 text-4xl md:text-7xl font-extrabold leading-[1.08] tracking-tight">
-                        From ad spend to
-                        <span class="text-gradient"> measurable growth</span>
+                        Paid Advertising & 
+                        <span class="text-gradient"> Digital Innovation Experts</span>
                     </h1>
 
                     <p class="mt-6 text-lg md:text-xl text-slate-300/80 max-w-2xl mx-auto leading-relaxed">
                         We help e-commerce & service brands scale with data-driven Meta Ads, Google Search and conversion-focused creative.
                     </p>
 
-                    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
-                        <a href="https://calendly.com" target="_blank" class="w-full sm:w-auto rounded-2xl px-7 py-4 text-sm font-bold text-white btn-primary">
-                            Start Free Trial →
+                    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="https://calendly.com" target="_blank" class="w-full sm:w-auto rounded-2xl px-10 py-4 text-base font-bold text-white btn-primary">
+                            Book a Call →
                         </a>
-                        <a href="#case-studies" class="w-full sm:w-auto rounded-2xl px-7 py-4 text-sm font-bold text-white btn-ghost">
+                        <a href="#case-studies" class="w-full sm:w-auto rounded-2xl px-10 py-4 text-base font-bold text-white btn-ghost">
                             Watch Demo
                         </a>
                     </div>
@@ -290,7 +306,7 @@
                             <h3 class="text-3xl font-extrabold mb-2">Growth Partner</h3>
                             <p class="text-slate-400 mb-6">Brands doing €10k - €50k / month.</p>
                             <div class="text-5xl font-extrabold mb-8 tracking-tighter">€1,799<span class="text-lg text-slate-500 font-semibold">/mo</span></div>
-                            <a href="https://calendly.com" target="_blank" class="block w-full py-4 text-center rounded-2xl text-sm font-extrabold text-white btn-primary">Get Started</a>
+                            <a href="https://calendly.com" target="_blank" class="block w-full py-4 text-center rounded-2xl text-sm font-extrabold text-white btn-primary">Book a Call</a>
                         </div>
                         <ul class="space-y-4 text-slate-300">
                             <li class="flex items-start gap-3"><span class="text-cyan-400">✓</span> Dedicated Media Buyer</li>
