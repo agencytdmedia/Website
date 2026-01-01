@@ -155,10 +155,13 @@
             pointer-events: none;
         }
 
+        /* Responsive team container - portrait orientation */
         .team-image-container {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border: 1px solid rgba(255,255,255,0.05);
-            aspect-ratio: 1/1;
+            border: 1px solid rgba(255,255,255,0.08);
+            aspect-ratio: 4/5;
+            width: 100%;
+            border-radius: 20px;
         }
 
         ::-webkit-scrollbar { width: 8px; }
@@ -196,13 +199,14 @@
                         <img src="tmp5js368bu (1).webp" alt="TD Media Logo" class="h-6 md:h-8 w-auto">
                     </a>
 
+                    <!-- Main Menu Links -->
                     <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
                         <a href="javascript:void(0)" onclick="navigateTo('home', 'services')" class="hover:text-white transition-colors">Services</a>
                         <a href="javascript:void(0)" onclick="navigateTo('home', 'reviews')" class="hover:text-white transition-colors">Reviews</a>
                         <a href="javascript:void(0)" onclick="navigateTo('team')" class="hover:text-white transition-colors">Our Team</a>
-                        <a href="javascript:void(0)" onclick="navigateTo('home', 'contact')" class="hover:text-white transition-colors">Contact</a>
                     </div>
 
+                    <!-- Action Buttons -->
                     <div class="flex items-center gap-2">
                         <a href="javascript:void(0)" onclick="navigateTo('home', 'contact')" class="hidden sm:inline-flex rounded-full px-4 py-2 text-sm font-semibold text-white/85 btn-ghost">
                             Contact
@@ -293,7 +297,7 @@
                         <!-- TikTok Ads -->
                         <div class="glass p-8 hover:border-cyan-500/50 transition-all group">
                             <div class="w-12 h-12 rounded-xl bg-[rgba(34,211,238,0.12)] border border-white/10 flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform">
-                                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z"></path></svg>
                             </div>
                             <h3 class="text-xl font-bold mb-4">TikTok Ads</h3>
                             <p class="text-slate-400 text-sm">Creative-first campaigns designed to earn attention with native UGC assets and Spark Ads.</p>
@@ -449,33 +453,42 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                         <!-- Tudor Dumitru -->
-                        <div class="glass p-10 flex flex-col items-center text-center group hover:border-blue-500/40 transition-all">
-                            <div class="w-40 h-40 rounded-3xl team-image-container mb-8 relative overflow-hidden flex items-center justify-center">
-                                <svg class="w-20 h-20 text-slate-700" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        <div class="glass overflow-hidden flex flex-col group hover:border-blue-500/40 transition-all">
+                            <div class="team-image-container relative overflow-hidden">
+                                <img src="tudordumitru.webp" alt="Tudor Dumitru" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <h3 class="text-2xl font-extrabold mb-2">Tudor Dumitru</h3>
-                            <p class="text-blue-400 font-bold tracking-widest uppercase text-xs mb-4">Founder & Strategy Lead</p>
-                            <p class="text-slate-400 text-sm leading-relaxed">Architect of ROI-focused systems. 7+ years of scaling brands across EU and Middle Eastern markets.</p>
+                            <div class="p-8 text-left">
+                                <p class="text-blue-400 font-bold tracking-widest uppercase text-[10px] mb-2">Founder & Strategy Lead</p>
+                                <h3 class="text-2xl font-extrabold mb-3">Tudor Dumitru</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">Architect of ROI-focused systems. 7+ years of scaling brands across EU and Middle Eastern markets.</p>
+                            </div>
                         </div>
 
                         <!-- Filipe Garcia -->
-                        <div class="glass p-10 flex flex-col items-center text-center group hover:border-cyan-500/40 transition-all">
-                            <div class="w-40 h-40 rounded-3xl team-image-container mb-8 relative overflow-hidden flex items-center justify-center">
-                                <svg class="w-20 h-20 text-slate-700" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        <div class="glass overflow-hidden flex flex-col group hover:border-cyan-500/40 transition-all">
+                            <div class="team-image-container relative overflow-hidden">
+                                <img src="filipe.webp" alt="Filipe Garcia" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <h3 class="text-2xl font-extrabold mb-2">Filipe Garcia</h3>
-                            <p class="text-blue-400 font-bold tracking-widest uppercase text-xs mb-4">Head of Media Buying</p>
-                            <p class="text-slate-400 text-sm leading-relaxed">Technical expert in pixel infrastructure and high-budget scaling strategies for global e-commerce.</p>
+                            <div class="p-8 text-left">
+                                <p class="text-cyan-400 font-bold tracking-widest uppercase text-[10px] mb-2">Head of Media Buying</p>
+                                <h3 class="text-2xl font-extrabold mb-3">Filipe Garcia</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">Technical expert in pixel infrastructure and high-budget scaling strategies for global e-commerce.</p>
+                            </div>
                         </div>
 
                         <!-- Vanessa Geambașu -->
-                        <div class="glass p-10 flex flex-col items-center text-center group hover:border-purple-500/40 transition-all">
-                            <div class="w-40 h-40 rounded-3xl team-image-container mb-8 relative overflow-hidden flex items-center justify-center">
-                                <svg class="w-20 h-20 text-slate-700" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        <div class="glass overflow-hidden flex flex-col group hover:border-purple-500/40 transition-all">
+                            <div class="team-image-container relative overflow-hidden">
+                                <img src="vanessa.webp" alt="Vanessa Geambașu" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <h3 class="text-2xl font-extrabold mb-2">Vanessa Geambașu</h3>
-                            <p class="text-blue-400 font-bold tracking-widest uppercase text-xs mb-4">Content Strategy Manager</p>
-                            <p class="text-slate-400 text-sm leading-relaxed">Master of the attention economy. Specializes in direct-response creative and viral hooks.</p>
+                            <div class="p-8 text-left">
+                                <p class="text-purple-400 font-bold tracking-widest uppercase text-[10px] mb-2">Content Strategy Manager</p>
+                                <h3 class="text-2xl font-extrabold mb-3">Vanessa Geambașu</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">Master of the attention economy. Specializes in direct-response creative and viral hooks.</p>
+                            </div>
                         </div>
                     </div>
 
