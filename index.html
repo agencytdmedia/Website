@@ -27,14 +27,28 @@
             max-width: 100%;
             overflow-x: hidden;
             position: relative;
+            background-color: var(--bg);
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
             color: #f8fafc;
             scroll-behavior: smooth;
             width: 100%;
+        }
+
+        /* SPA Page Handling */
+        .page-view {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: translateY(10px);
+        }
+
+        .page-view.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Glass primitives */
@@ -141,6 +155,12 @@
             pointer-events: none;
         }
 
+        .team-image-container {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            aspect-ratio: 1/1;
+        }
+
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #030712; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
@@ -154,31 +174,40 @@
             filter: blur(80px);
             pointer-events: none;
         }
+
+        .review-card {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .review-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(2, 58, 255, 0.4);
+        }
     </style>
 </head>
 
 <body class="antialiased">
     <div class="overflow-x-hidden w-full relative">
         
-        <!-- NAV -->
+        <!-- UNIVERSAL NAV -->
         <nav class="fixed top-5 left-1/2 z-50 w-[min(1100px,calc(100%-24px))] -translate-x-1/2">
             <div class="glass-strong px-4 py-3 md:px-5">
                 <div class="flex items-center justify-between gap-3">
-                    <a href="#" class="flex items-center">
+                    <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center">
                         <img src="tmp5js368bu (1).webp" alt="TD Media Logo" class="h-6 md:h-8 w-auto">
                     </a>
 
                     <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
-                        <a href="#services" class="hover:text-white transition-colors">Services</a>
-                        <a href="#team" class="hover:text-white transition-colors">Our Team</a>
-                        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+                        <a href="javascript:void(0)" onclick="navigateTo('home', 'services')" class="hover:text-white transition-colors">Services</a>
+                        <a href="javascript:void(0)" onclick="navigateTo('home', 'reviews')" class="hover:text-white transition-colors">Reviews</a>
+                        <a href="javascript:void(0)" onclick="navigateTo('team')" class="hover:text-white transition-colors">Our Team</a>
+                        <a href="javascript:void(0)" onclick="navigateTo('home', 'contact')" class="hover:text-white transition-colors">Contact</a>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="#contact" class="hidden sm:inline-flex rounded-full px-4 py-2 text-sm font-semibold text-white/85 btn-ghost">
+                        <a href="javascript:void(0)" onclick="navigateTo('home', 'contact')" class="hidden sm:inline-flex rounded-full px-4 py-2 text-sm font-semibold text-white/85 btn-ghost">
                             Contact
                         </a>
-                        <a href="https://calendly.com" target="_blank" class="rounded-full px-6 py-2 text-sm font-bold text-white btn-primary">
+                        <a href="https://calendly.com/tudordumitru/discovery-call" target="_blank" class="rounded-full px-6 py-2 text-sm font-bold text-white btn-primary">
                             Book a Call
                         </a>
                     </div>
@@ -186,214 +215,282 @@
             </div>
         </nav>
 
-        <!-- HERO -->
-        <section class="hero-bg pt-40 pb-20 px-6 overflow-hidden">
-            <div class="relative mx-auto max-w-6xl">
-                <div class="text-center relative z-10">
-                    <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold tracking-wide text-cyan-100 chip">
-                        <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10 border border-white/10">✦</span>
-                        Powered by Performance + AI Systems
+        <!-- HOME PAGE VIEW -->
+        <main id="view-home" class="page-view active">
+            <!-- HERO -->
+            <section class="hero-bg pt-40 pb-20 px-6 overflow-hidden">
+                <div class="relative mx-auto max-w-6xl">
+                    <div class="text-center relative z-10">
+                        <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold tracking-wide text-cyan-100 chip">
+                            <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10 border border-white/10">✦</span>
+                            Powered by Performance + AI Systems
+                        </div>
+
+                        <h1 class="mt-8 text-4xl md:text-7xl font-extrabold leading-[1.08] tracking-tight">
+                            Paid Advertising & 
+                            <span class="text-gradient"> Digital Innovation Experts</span>
+                        </h1>
+
+                        <p class="mt-6 text-lg md:text-xl text-slate-300/80 max-w-2xl mx-auto leading-relaxed">
+                            We help e-commerce & service brands scale with data-driven Meta Ads, Google Search and conversion-focused creative.
+                        </p>
+
+                        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <a href="https://calendly.com/tudordumitru/discovery-call" target="_blank" class="w-full sm:w-auto rounded-2xl px-10 py-4 text-base font-bold text-white btn-primary">
+                                Book a Call →
+                            </a>
+                            <a href="javascript:void(0)" onclick="navigateTo('team')" class="w-full sm:w-auto rounded-2xl px-10 py-4 text-base font-bold text-white btn-ghost">
+                                Meet the Team
+                            </a>
+                        </div>
                     </div>
 
-                    <h1 class="mt-8 text-4xl md:text-7xl font-extrabold leading-[1.08] tracking-tight">
-                        Paid Advertising & 
-                        <span class="text-gradient"> Digital Innovation Experts</span>
-                    </h1>
-
-                    <p class="mt-6 text-lg md:text-xl text-slate-300/80 max-w-2xl mx-auto leading-relaxed">
-                        We help e-commerce & service brands scale with data-driven Meta Ads, Google Search and conversion-focused creative.
-                    </p>
-
-                    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="https://calendly.com" target="_blank" class="w-full sm:w-auto rounded-2xl px-10 py-4 text-base font-bold text-white btn-primary">
-                            Book a Call →
-                        </a>
-                        <a href="#contact" class="w-full sm:w-auto rounded-2xl px-10 py-4 text-base font-bold text-white btn-ghost">
-                            Contact Us
-                        </a>
+                    <!-- Stats -->
+                    <div class="mt-14 grid gap-4 md:grid-cols-3 relative z-10">
+                        <div class="glass p-6">
+                            <div class="text-sm text-slate-300">Managed ad spend</div>
+                            <div class="mt-2 text-3xl font-extrabold tracking-tight">€3.4M+</div>
+                            <div class="mt-2 text-sm text-slate-400">Across Meta, Google & TikTok</div>
+                        </div>
+                        <div class="glass p-6">
+                            <div class="text-sm text-slate-300">Avg. CPA reduction</div>
+                            <div class="mt-2 text-3xl font-extrabold tracking-tight">-24% to -42%</div>
+                            <div class="mt-2 text-sm text-slate-400">After optimization period</div>
+                        </div>
+                        <div class="glass p-6">
+                            <div class="text-sm text-slate-300">Reporting cadence</div>
+                            <div class="mt-2 text-3xl font-extrabold tracking-tight">Weekly</div>
+                            <div class="mt-2 text-sm text-slate-400">Actionable data insights</div>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Stats -->
-                <div class="mt-14 grid gap-4 md:grid-cols-3 relative z-10">
-                    <div class="glass p-6">
-                        <div class="text-sm text-slate-300">Managed ad spend</div>
-                        <div class="mt-2 text-3xl font-extrabold tracking-tight">€3.4M+</div>
-                        <div class="mt-2 text-sm text-slate-400">Across Meta, Google & TikTok</div>
+            <!-- Services Section -->
+            <section id="services" class="py-24 px-6 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto">
+                    <div class="mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold">Our Core <span class="text-gradient">Expertise</span></h2>
+                        <p class="mt-3 text-slate-400">Holistic digital growth powered by experimentation.</p>
                     </div>
-                    <div class="glass p-6">
-                        <div class="text-sm text-slate-300">Avg. CPA reduction</div>
-                        <div class="mt-2 text-3xl font-extrabold tracking-tight">-24% to -42%</div>
-                        <div class="mt-2 text-sm text-slate-400">After optimization period</div>
-                    </div>
-                    <div class="glass p-6">
-                        <div class="text-sm text-slate-300">Reporting cadence</div>
-                        <div class="mt-2 text-3xl font-extrabold tracking-tight">Weekly</div>
-                        <div class="mt-2 text-sm text-slate-400">Actionable data insights</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    
-         <!-- Team Section -->
-        <section id="team" class="py-24 px-6 relative overflow-hidden">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Meet Our <span class="text-gradient">A-Team</span></h2>
-                    <p class="text-slate-400 max-w-2xl mx-auto">A powerhouse of combined experience in marketing, advertising, and digital innovation.</p>
-                </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Tudor Dumitru -->
-                    <div class="team-card glass p-8 flex flex-col items-center text-center transition-all duration-300">
-                        <div class="relative mb-6">
-                            <div class="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 p-1">
-                                <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
-                                    <svg class="w-16 h-16 text-slate-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Meta Ads - Large Card -->
+                        <div class="md:col-span-2 glass p-8 md:p-12 hover:border-blue-500/50 transition-all group">
+                            <div class="w-12 h-12 rounded-xl bg-[rgba(2,58,255,0.18)] border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
                             </div>
+                            <h3 class="text-2xl font-bold mb-4">Meta Advertising</h3>
+                            <p class="text-slate-400 mb-6 leading-relaxed">Full-funnel management from creative direction to technical pixel setup. We scale spend while protecting ROAS using advanced Advantage+ strategies.</p>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-300">
+                                <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> A/B Creative Testing</li>
+                                <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Audience Research</li>
+                                <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> CAPI & Pixel Setup</li>
+                                <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Retargeting Funnels</li>
+                            </ul>
                         </div>
-                        <h3 class="text-xl font-bold">Tudor Dumitru</h3>
-                        <p class="text-blue-400 font-semibold mb-3">Founder & CEO</p>
-                        <p class="text-sm text-slate-400 leading-relaxed">Visionary leader driving innovation and global expansion across EU and UAE markets.</p>
-                    </div>
 
-                    <!-- Filipe Garcia -->
-                    <div class="team-card glass p-8 flex flex-col items-center text-center transition-all duration-300">
-                        <div class="relative mb-6">
-                            <div class="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 p-1">
-                                <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
-                                    <svg class="w-16 h-16 text-slate-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                </div>
+                        <!-- TikTok Ads -->
+                        <div class="glass p-8 hover:border-cyan-500/50 transition-all group">
+                            <div class="w-12 h-12 rounded-xl bg-[rgba(34,211,238,0.12)] border border-white/10 flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform">
+                                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             </div>
+                            <h3 class="text-xl font-bold mb-4">TikTok Ads</h3>
+                            <p class="text-slate-400 text-sm">Creative-first campaigns designed to earn attention with native UGC assets and Spark Ads.</p>
                         </div>
-                        <h3 class="text-xl font-bold">Filipe Garcia</h3>
-                        <p class="text-blue-400 font-semibold mb-3">Head of Paid Ads</p>
-                        <p class="text-sm text-slate-400 leading-relaxed">Mastermind behind multi-million euro ad campaigns focusing on high ROAS scaling.</p>
-                    </div>
 
-                    <!-- Vanessa Geambașu -->
-                    <div class="team-card glass p-8 flex flex-col items-center text-center transition-all duration-300">
-                        <div class="relative mb-6">
-                            <div class="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 p-1">
-                                <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
-                                    <svg class="w-16 h-16 text-slate-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                </div>
+                        <!-- Google Search & PMax -->
+                        <div class="glass p-8 hover:border-blue-400/50 transition-all group">
+                            <div class="w-12 h-12 rounded-xl bg-[rgba(255,255,255,0.05)] border border-white/10 flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                             </div>
+                            <h3 class="text-xl font-bold mb-4">Google Search & PMax</h3>
+                            <p class="text-slate-400 text-sm">Capturing high-intent demand through precision keyword targeting and Performance Max optimization.</p>
                         </div>
-                        <h3 class="text-xl font-bold">Vanessa Geambașu</h3>
-                        <p class="text-blue-400 font-semibold mb-3">Content Manager</p>
-                        <p class="text-sm text-slate-400 leading-relaxed">Specializing in native-style UGC assets that convert followers into customers.</p>
+
+                        <!-- Conversion Optimization (CRO) -->
+                        <div class="glass p-8 hover:border-purple-400/50 transition-all group">
+                            <div class="w-12 h-12 rounded-xl bg-[rgba(168,85,247,0.12)] border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">CRO & Landing Pages</h3>
+                            <p class="text-slate-400 text-sm">We don't just send traffic; we help you convert it with high-performance landing page architecture.</p>
+                        </div>
+
+                        <!-- Creative Strategy -->
+                        <div class="glass p-8 hover:border-yellow-400/50 transition-all group">
+                            <div class="w-12 h-12 rounded-xl bg-[rgba(251,191,36,0.12)] border border-white/10 flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
+                                <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">Creative Strategy</h3>
+                            <p class="text-slate-400 text-sm">Briefing and managing UGC creators to produce high-impact ads that bypass "ad-blindness".</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-
-        <!-- Services Section -->
-        <section id="services" class="py-24 px-6 relative overflow-hidden">
-            <div class="max-w-7xl mx-auto">
-                <div class="mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold">Our Core <span class="text-gradient">Expertise</span></h2>
-                    <p class="mt-3 text-slate-400">Holistic digital growth powered by experimentation.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="md:col-span-2 glass p-8 md:p-12 hover:border-blue-500/50 transition-all group">
-                        <div class="w-12 h-12 rounded-xl bg-[rgba(2,58,255,0.18)] border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">Meta Advertising</h3>
-                        <p class="text-slate-400 mb-6 leading-relaxed">Full-funnel management from creative direction to technical pixel setup. We scale spend while protecting ROAS.</p>
-                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-300">
-                            <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> A/B Creative Testing</li>
-                            <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Audience Research</li>
-                        </ul>
+            <!-- Reviews Section -->
+            <section id="reviews" class="py-24 px-6 relative">
+                <div class="max-w-7xl mx-auto">
+                    <div class="mb-16 text-center">
+                        <h2 class="text-3xl md:text-5xl font-bold mb-4">Client <span class="text-gradient">Success Stories</span></h2>
+                        <p class="text-slate-400 max-w-xl mx-auto">Don't just take our word for it. Here's what our partners say about the TDMedia impact.</p>
                     </div>
-                    <div class="glass p-8 hover:border-cyan-500/50 transition-all group">
-                        <div class="w-12 h-12 rounded-xl bg-[rgba(34,211,238,0.12)] border border-white/10 flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform">
-                            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4">TikTok Ads</h3>
-                        <p class="text-slate-400 text-sm">Creative-first campaigns designed to earn attention with native UGC assets.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-24 px-6 relative overflow-hidden">
-            <div class="form-glow -top-20 -left-20"></div>
-            <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-                    
-                    <!-- Left Block (5/12 columns) -->
-                    <div class="lg:col-span-5 space-y-10 lg:pr-8">
-                        <div>
-                            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
-                                Let's have a <span class="text-gradient">chat</span>
-                            </h2>
-                            <p class="text-xl text-slate-300/80 leading-relaxed max-w-lg">
-                                Complete our form and one of our colleagues will reach out soon to discuss your growth strategy.
-                            </p>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
-                            <!-- Contact Phone -->
-                            <div class="flex items-center gap-5 group">
-                                <div class="w-12 h-12 rounded-full glass flex items-center justify-center text-blue-400 group-hover:bg-blue-600/20 transition-all">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                                </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Review 1 -->
+                        <div class="glass p-8 review-card flex flex-col h-full">
+                            <div class="flex items-center gap-4 mb-6">
+                                <img src="drfiras.webp" alt="Dr. Firas" class="w-14 h-14 rounded-full border border-blue-500/30 object-cover">
                                 <div>
-                                    <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Direct Line</p>
-                                    <a href="tel:+1234567890" class="text-lg font-bold hover:text-blue-400 transition-colors">+1 (234) 567-890</a>
+                                    <h4 class="font-bold text-lg">Dr. Firas</h4>
+                                    <p class="text-xs text-blue-400 font-semibold uppercase tracking-wider">Aesthetic Medicine</p>
                                 </div>
                             </div>
+                            <p class="text-slate-300 italic leading-relaxed mb-6 flex-grow">"Working with Tudor and his team has transformed our digital presence. Our booking rate increased by over 40% in just three months. Their approach to Meta Ads is highly technical and result-oriented."</p>
+                            <div class="flex text-yellow-500 gap-1">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                        </div>
 
-                            <!-- Contact Email -->
-                            <div class="flex items-center gap-5 group">
-                                <div class="w-12 h-12 rounded-full glass flex items-center justify-center text-cyan-400 group-hover:bg-cyan-600/20 transition-all">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                </div>
+                        <!-- Review 2 -->
+                        <div class="glass p-8 review-card flex flex-col h-full">
+                            <div class="flex items-center gap-4 mb-6">
+                                <img src="julietageoroiu.webp" alt="Julieta Georoiu" class="w-14 h-14 rounded-full border border-cyan-500/30 object-cover">
                                 <div>
-                                    <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Email Support</p>
-                                    <a href="mailto:hello@tdmedia.io" class="text-lg font-bold hover:text-cyan-400 transition-colors">hello@tdmedia.io</a>
+                                    <h4 class="font-bold text-lg">Julieta Georoiu</h4>
+                                    <p class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">Education & Arts</p>
                                 </div>
+                            </div>
+                            <p class="text-slate-300 italic leading-relaxed mb-6 flex-grow">"The level of transparency TDMedia provides is unmatched. Weekly reports that actually make sense and a strategy that consistently brings in high-quality leads. Truly a growth partner."</p>
+                            <div class="flex text-yellow-500 gap-1">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                        </div>
+
+                        <!-- Review 3 -->
+                        <div class="glass p-8 review-card flex flex-col h-full">
+                            <div class="flex items-center gap-4 mb-6">
+                                <img src="bogdanpromed.webp" alt="Bogdan Promed" class="w-14 h-14 rounded-full border border-purple-500/30 object-cover">
+                                <div>
+                                    <h4 class="font-bold text-lg">Bogdan Promed</h4>
+                                    <p class="text-xs text-purple-400 font-semibold uppercase tracking-wider">Health Services</p>
+                                </div>
+                            </div>
+                            <p class="text-slate-300 italic leading-relaxed mb-6 flex-grow">"They didn't just run ads; they optimized our entire funnel. From landing page tweaks to creative strategy, TDMedia looks at the bigger picture to ensure we get the best ROI."</p>
+                            <div class="flex text-yellow-500 gap-1">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
 
-                    <!-- Right Block (7/12 columns) - FORM CONTAINER -->
-                    <div class="lg:col-span-7 relative group">
-                        <div class="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-[32px] blur-2xl opacity-40 group-hover:opacity-60 transition duration-500"></div>
-                        
-                        <div class="glass p-2 md:p-4 shadow-2xl relative overflow-hidden min-h-[500px] w-full">
-                            <iframe
-                                src="https://api.leadconnectorhq.com/widget/form/Nh6UzlGw2DLIwNIPU9JD"
-                                style="width:100%;height:100%;min-height:460px;border:none;border-radius:18px"
-                                id="inline-Nh6UzlGw2DLIwNIPU9JD" 
-                                data-layout="{'id':'INLINE'}"
-                                data-trigger-type="alwaysShow"
-                                data-trigger-value=""
-                                data-activation-type="alwaysActivated"
-                                data-activation-value=""
-                                data-deactivation-type="neverDeactivate"
-                                data-deactivation-value=""
-                                data-form-name="Form new website"
-                                data-height="460"
-                                data-layout-iframe-id="inline-Nh6UzlGw2DLIwNIPU9JD"
-                                data-form-id="Nh6UzlGw2DLIwNIPU9JD"
-                                title="Form new website"
-                            ></iframe>
-                            <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+            <!-- Contact Section -->
+            <section id="contact" class="py-24 px-6 relative overflow-hidden">
+                <div class="form-glow -top-20 -left-20"></div>
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+                        <div class="lg:col-span-5 space-y-10 lg:pr-8">
+                            <div>
+                                <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+                                    Let's have a <span class="text-gradient">chat</span>
+                                </h2>
+                                <p class="text-xl text-slate-300/80 leading-relaxed max-w-lg">
+                                    Complete our form and one of our colleagues will reach out soon to discuss your growth strategy.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
+                                <div class="flex items-center gap-5 group">
+                                    <div class="w-12 h-12 rounded-full glass flex items-center justify-center text-blue-400 group-hover:bg-blue-600/20 transition-all">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Direct Line</p>
+                                        <a href="tel:+1234567890" class="text-lg font-bold hover:text-blue-400 transition-colors">+1 (234) 567-890</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-5 group">
+                                    <div class="w-12 h-12 rounded-full glass flex items-center justify-center text-cyan-400 group-hover:bg-cyan-600/20 transition-all">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Email Support</p>
+                                        <a href="mailto:hello@tdmedia.io" class="text-lg font-bold hover:text-cyan-400 transition-colors">hello@tdmedia.io</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-7 relative group">
+                            <div class="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-[32px] blur-2xl opacity-40 group-hover:opacity-60 transition duration-500"></div>
+                            <div class="glass p-2 md:p-4 shadow-2xl relative overflow-hidden min-h-[500px] w-full">
+                                <iframe src="https://api.leadconnectorhq.com/widget/form/Nh6UzlGw2DLIwNIPU9JD" style="width:100%;height:100%;min-height:460px;border:none;border-radius:18px" id="inline-Nh6UzlGw2DLIwNIPU9JD"></iframe>
+                                <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- TEAM PAGE VIEW -->
+        <main id="view-team" class="page-view">
+            <section class="pt-48 pb-32 px-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="mb-20 text-center">
+                        <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold tracking-wide text-cyan-100 chip mb-6">
+                            Expert-Level Management
+                        </div>
+                        <h1 class="text-5xl md:text-7xl font-extrabold mb-6">The Brains Behind <span class="text-gradient">TDMedia</span></h1>
+                        <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">Meet the specialized strike team of performance marketers, data analysts, and creative directors.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        <!-- Tudor Dumitru -->
+                        <div class="glass p-10 flex flex-col items-center text-center group hover:border-blue-500/40 transition-all">
+                            <div class="w-40 h-40 rounded-3xl team-image-container mb-8 relative overflow-hidden flex items-center justify-center">
+                                <svg class="w-20 h-20 text-slate-700" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            </div>
+                            <h3 class="text-2xl font-extrabold mb-2">Tudor Dumitru</h3>
+                            <p class="text-blue-400 font-bold tracking-widest uppercase text-xs mb-4">Founder & Strategy Lead</p>
+                            <p class="text-slate-400 text-sm leading-relaxed">Architect of ROI-focused systems. 7+ years of scaling brands across EU and Middle Eastern markets.</p>
+                        </div>
+
+                        <!-- Filipe Garcia -->
+                        <div class="glass p-10 flex flex-col items-center text-center group hover:border-cyan-500/40 transition-all">
+                            <div class="w-40 h-40 rounded-3xl team-image-container mb-8 relative overflow-hidden flex items-center justify-center">
+                                <svg class="w-20 h-20 text-slate-700" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            </div>
+                            <h3 class="text-2xl font-extrabold mb-2">Filipe Garcia</h3>
+                            <p class="text-blue-400 font-bold tracking-widest uppercase text-xs mb-4">Head of Media Buying</p>
+                            <p class="text-slate-400 text-sm leading-relaxed">Technical expert in pixel infrastructure and high-budget scaling strategies for global e-commerce.</p>
+                        </div>
+
+                        <!-- Vanessa Geambașu -->
+                        <div class="glass p-10 flex flex-col items-center text-center group hover:border-purple-500/40 transition-all">
+                            <div class="w-40 h-40 rounded-3xl team-image-container mb-8 relative overflow-hidden flex items-center justify-center">
+                                <svg class="w-20 h-20 text-slate-700" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            </div>
+                            <h3 class="text-2xl font-extrabold mb-2">Vanessa Geambașu</h3>
+                            <p class="text-blue-400 font-bold tracking-widest uppercase text-xs mb-4">Content Strategy Manager</p>
+                            <p class="text-slate-400 text-sm leading-relaxed">Master of the attention economy. Specializes in direct-response creative and viral hooks.</p>
                         </div>
                     </div>
 
+                    <div class="mt-20 glass p-12 text-center relative overflow-hidden">
+                        <h3 class="text-3xl font-bold mb-4">Direct Communication, Better Results.</h3>
+                        <p class="text-slate-400 mb-8 max-w-xl mx-auto leading-relaxed">We don't hide behind account managers. You work directly with the seniors who are building your campaigns.</p>
+                        <a href="https://calendly.com/tudordumitru/discovery-call" target="_blank" class="inline-block rounded-2xl px-10 py-4 text-base font-bold text-white btn-primary">
+                            Work with the Team
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </main>
 
-        <!-- Footer -->
+        <!-- FOOTER -->
         <footer class="py-16 px-6 border-t border-white/5 relative bg-[#030712]">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
                 <div class="flex items-center">
@@ -401,8 +498,8 @@
                 </div>
                 <p class="text-slate-500 text-sm">© 2025 TDMedia. Built for performance.</p>
                 <div class="flex gap-8 text-slate-400 text-sm">
-                    <a href="#" class="hover:text-white">Privacy Policy</a>
-                    <a href="#" class="hover:text-white">Terms of Service</a>
+                    <a href="javascript:void(0)" onclick="navigateTo('home')" class="hover:text-white">Privacy Policy</a>
+                    <a href="javascript:void(0)" onclick="navigateTo('home')" class="hover:text-white">Terms of Service</a>
                 </div>
             </div>
         </footer>
@@ -410,6 +507,36 @@
     </div>
 
     <script>
+        /**
+         * Simple SPA Navigation Logic
+         */
+        function navigateTo(viewId, scrollToId = null) {
+            const views = document.querySelectorAll('.page-view');
+            
+            // 1. Hide all views
+            views.forEach(v => {
+                v.classList.remove('active');
+            });
+
+            // 2. Show target view
+            const targetView = document.getElementById(`view-${viewId}`);
+            if (targetView) {
+                targetView.classList.add('active');
+                
+                // Reset scroll
+                window.scrollTo(0, 0);
+
+                // 3. Handle sub-section scrolling
+                if (scrollToId) {
+                    setTimeout(() => {
+                        const el = document.getElementById(scrollToId);
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                }
+            }
+        }
+
+        // Handle Reveal Animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -419,12 +546,17 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.glass').forEach(el => {
-            el.style.opacity = "0";
-            el.style.transform = "translateY(20px)";
-            el.style.transition = "all 0.6s ease-out";
-            observer.observe(el);
-        });
+        function initReveal() {
+            document.querySelectorAll('.glass').forEach(el => {
+                el.style.opacity = "0";
+                el.style.transform = "translateY(20px)";
+                el.style.transition = "all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)";
+                observer.observe(el);
+            });
+        }
+
+        // Run on load
+        window.onload = initReveal;
     </script>
 </body>
 </html>
