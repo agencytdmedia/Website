@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&display=swap" rel="stylesheet" />
 
     <style>
         :root {
@@ -199,6 +199,21 @@
             visibility: visible;
             pointer-events: auto;
         }
+        
+        /* Specific Mobile Menu Styles */
+        .mobile-link {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 1.5rem;
+            width: 100%;
+            display: block;
+            font-size: 1.125rem; /* text-lg equivalent */
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            transition: color 0.2s ease;
+        }
+        .mobile-link:active {
+            color: var(--accent-cyan);
+        }
     </style>
 </head>
 
@@ -239,20 +254,20 @@
         </nav>
 
         <!-- MOBILE MENU OVERLAY -->
-        <div id="mobile-menu" class="fixed inset-0 z-[60] hidden bg-[#030712]/95 backdrop-blur-xl flex flex-col p-8">
-            <div class="flex justify-between items-center mb-12">
+        <div id="mobile-menu" class="fixed inset-0 z-[60] hidden bg-[#030712]/95 backdrop-blur-xl flex flex-col p-8 pt-20">
+            <div class="flex justify-between items-center mb-16">
                 <img src="tmp5js368bu (1).webp" alt="Logo" class="h-6 w-auto">
                 <button id="menu-close" class="glass p-2 text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
-            <div class="flex flex-col gap-8 text-2xl font-bold">
-                <a href="javascript:void(0)" onclick="closeMobileMenu(); navigateTo('home', 'services')" class="text-white hover:text-blue-400">Services</a>
-                <a href="javascript:void(0)" onclick="closeMobileMenu(); navigateTo('home', 'reviews')" class="text-white hover:text-blue-400">Reviews</a>
-                <a href="javascript:void(0)" onclick="closeMobileMenu(); navigateTo('team')" class="text-white hover:text-blue-400">Our Team</a>
-                <a href="javascript:void(0)" onclick="closeMobileMenu(); navigateTo('home', 'contact')" class="text-white hover:text-blue-400">Contact Us</a>
+            <div class="flex flex-col gap-6">
+                <a href="javascript:void(0)" onclick="closeMobileMenu(); navigateTo('home', 'services')" class="mobile-link">Services</a>
+                <a href="javascript:void(0)" onclick="closeMobileMenu(); navigateTo('home', 'reviews')" class="mobile-link">Reviews</a>
+                <a href="javascript:void(0)" onclick="closeMobileMenu(); navigateTo('team')" class="mobile-link">Our Team</a>
+                <a href="javascript:void(0)" onclick="closeMobileMenu(); navigateTo('home', 'contact')" class="mobile-link">Contact Us</a>
             </div>
-            <div class="mt-auto">
+            <div class="mt-auto pb-10">
                 <a href="https://calendly.com/tudordumitru/discovery-call" target="_blank" class="w-full inline-block text-center rounded-2xl px-10 py-5 text-lg font-bold text-white btn-primary">
                     Book a Free Call
                 </a>
