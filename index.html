@@ -206,7 +206,34 @@
             box-shadow: 0 8px 16px -4px rgba(2, 58, 255, 0.3);
         }
 
-        /* Mobile Menu Transitions */
+        /* Client Logo Styling */
+        .client-logo-wrapper {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            border-radius: 16px;
+        }
+        .client-logo-wrapper:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(2, 58, 255, 0.3);
+            transform: scale(1.02);
+        }
+        .client-logo-img {
+            max-height: 50px;
+            width: auto;
+            filter: grayscale(1) brightness(1.5);
+            transition: filter 0.3s ease;
+            opacity: 0.7;
+        }
+        .client-logo-wrapper:hover .client-logo-img {
+            filter: grayscale(0) brightness(1);
+            opacity: 1;
+        }
+
         #mobile-menu {
             transition: opacity 0.3s ease, visibility 0.3s;
         }
@@ -247,6 +274,7 @@
 
                     <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
                         <a href="javascript:void(0)" onclick="navigateTo('home', 'services')" class="hover:text-white transition-colors">Services</a>
+                        <a href="javascript:void(0)" onclick="navigateTo('home', 'portfolio')" class="hover:text-white transition-colors">Portfolio</a>
                         <a href="javascript:void(0)" onclick="navigateTo('home', 'reviews')" class="hover:text-white transition-colors">Reviews</a>
                         <a href="javascript:void(0)" onclick="navigateTo('team')" class="hover:text-white transition-colors">Our Team</a>
                     </div>
@@ -276,6 +304,7 @@
             </div>
             <div class="flex flex-col gap-6">
                 <a href="javascript:void(0)" onclick="closeMobileMenu(); navigateTo('home', 'services')" class="mobile-link">Services</a>
+                <a href="javascript:void(0)" onclick="closeMobileMenu(); navigateTo('home', 'portfolio')" class="mobile-link">Portfolio</a>
                 <a href="javascript:void(0)" onclick="closeMobileMenu(); navigateTo('home', 'reviews')" class="mobile-link">Reviews</a>
                 <a href="javascript:void(0)" onclick="closeMobileMenu(); navigateTo('team')" class="mobile-link">Our Team</a>
                 <a href="javascript:void(0)" onclick="closeMobileMenu(); navigateTo('home', 'contact')" class="mobile-link">Contact Us</a>
@@ -333,6 +362,53 @@
                             <div class="text-sm text-slate-300">Reporting cadence</div>
                             <div class="mt-2 text-3xl font-extrabold tracking-tight">Weekly</div>
                             <div class="mt-2 text-sm text-slate-400">Actionable data insights</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PORTFOLIO LOGO GRID SECTION -->
+            <section id="portfolio" class="py-24 px-6 bg-[#030712]/50 relative border-y border-white/5">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Global Reach, <span class="text-gradient">Proven Results</span></h2>
+                        <p class="text-slate-400 text-lg max-w-2xl mx-auto">Over 50+ international brands have trusted us to scale their operations across Europe, USA, and the Middle East.</p>
+                    </div>
+
+                    <!-- 2 Rows, 5 Columns Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
+                        <!-- Top Row (5 items) -->
+                        <div class="client-logo-wrapper">
+                            <img src="client1.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+1'">
+                        </div>
+                        <div class="client-logo-wrapper">
+                            <img src="client2.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+2'">
+                        </div>
+                        <div class="client-logo-wrapper">
+                            <img src="client3.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+3'">
+                        </div>
+                        <div class="client-logo-wrapper">
+                            <img src="client4.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+4'">
+                        </div>
+                        <div class="client-logo-wrapper">
+                            <img src="client5.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+5'">
+                        </div>
+
+                        <!-- Bottom Row (5 items) -->
+                        <div class="client-logo-wrapper">
+                            <img src="client6.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+6'">
+                        </div>
+                        <div class="client-logo-wrapper">
+                            <img src="client7.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+7'">
+                        </div>
+                        <div class="client-logo-wrapper">
+                            <img src="client8.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+8'">
+                        </div>
+                        <div class="client-logo-wrapper">
+                            <img src="client9.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+9'">
+                        </div>
+                        <div class="client-logo-wrapper">
+                            <img src="client10.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+10'">
                         </div>
                     </div>
                 </div>
@@ -555,12 +631,10 @@
 
         <!-- MODERN FOOTER -->
         <footer class="py-20 px-6 relative bg-[#030712] border-t border-white/5 overflow-hidden">
-            <!-- Decorative Background Element -->
             <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full"></div>
             
             <div class="max-w-7xl mx-auto relative z-10">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start mb-16">
-                    <!-- Column 1: Brand -->
                     <div class="lg:col-span-4">
                         <a href="javascript:void(0)" onclick="navigateTo('home')" class="inline-block mb-6">
                             <img src="tmp5js368bu (1).webp" alt="TD Media" class="h-8 w-auto">
@@ -568,7 +642,6 @@
                         <p class="text-slate-400 text-base max-w-sm leading-relaxed mb-8">
                             A performance-first digital agency helping innovative brands dominate their markets through precision advertising and creative excellence.
                         </p>
-                        <!-- Footer Socials -->
                         <div class="flex gap-4">
                             <a href="https://www.facebook.com/p/TD-Media-Agency-61567419676481/" target="_blank" class="social-glass" title="Facebook">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.325-.597 1.325-1.326V1.326C24 .597 23.403 0 22.675 0z"/></svg>
@@ -582,18 +655,17 @@
                         </div>
                     </div>
 
-                    <!-- Column 2: Quick Links -->
                     <div class="lg:col-span-2 lg:ml-auto">
                         <h4 class="text-white font-bold mb-6">Navigation</h4>
                         <ul class="space-y-4 text-slate-400">
                             <li><a href="javascript:void(0)" onclick="navigateTo('home')" class="hover:text-white transition-colors">Home</a></li>
                             <li><a href="javascript:void(0)" onclick="navigateTo('home', 'services')" class="hover:text-white transition-colors">Services</a></li>
+                            <li><a href="javascript:void(0)" onclick="navigateTo('home', 'portfolio')" class="hover:text-white transition-colors">Portfolio</a></li>
                             <li><a href="javascript:void(0)" onclick="navigateTo('home', 'reviews')" class="hover:text-white transition-colors">Reviews</a></li>
                             <li><a href="javascript:void(0)" onclick="navigateTo('team')" class="hover:text-white transition-colors">Our Team</a></li>
                         </ul>
                     </div>
 
-                    <!-- Column 3: Contact -->
                     <div class="lg:col-span-3">
                         <h4 class="text-white font-bold mb-6">Connect</h4>
                         <ul class="space-y-4 text-slate-400">
@@ -611,7 +683,6 @@
                         </ul>
                     </div>
 
-                    <!-- Column 4: CTA -->
                     <div class="lg:col-span-3">
                         <div class="glass p-6 border-blue-500/20">
                             <h4 class="text-white font-bold mb-3">Scale your brand</h4>
@@ -684,7 +755,7 @@
         }, { threshold: 0.1 });
 
         function initReveal() {
-            document.querySelectorAll('.glass').forEach(el => {
+            document.querySelectorAll('.glass, .client-logo-wrapper').forEach(el => {
                 el.style.opacity = "0";
                 el.style.transform = "translateY(20px)";
                 el.style.transition = "all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)";
