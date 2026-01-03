@@ -167,16 +167,6 @@
         ::-webkit-scrollbar-track { background: #030712; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
 
-        .form-glow {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(2, 58, 255, 0.12) 0%, transparent 70%);
-            z-index: -1;
-            filter: blur(80px);
-            pointer-events: none;
-        }
-
         .review-card {
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
@@ -214,20 +204,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 16px;
+            min-height: 100px;
         }
         .client-logo-wrapper:hover {
             background: rgba(255, 255, 255, 0.05);
             border-color: rgba(2, 58, 255, 0.3);
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
         .client-logo-img {
-            max-height: 50px;
+            max-height: 42px;
+            max-width: 100%;
             width: auto;
             filter: grayscale(1) brightness(1.5);
-            transition: filter 0.3s ease;
-            opacity: 0.7;
+            transition: all 0.3s ease;
+            opacity: 0.6;
         }
         .client-logo-wrapper:hover .client-logo-img {
             filter: grayscale(0) brightness(1);
@@ -241,11 +233,6 @@
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
-        }
-        #mobile-menu:not(.hidden) {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
         }
         
         .mobile-link {
@@ -324,7 +311,7 @@
                     <div class="text-center relative z-10">
                         <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold tracking-wide text-cyan-100 chip">
                             <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10 border border-white/10">✦</span>
-                            Powered by Performance + AI Systems
+                            Expert Performance Systems
                         </div>
 
                         <h1 class="mt-8 text-4xl md:text-7xl font-extrabold leading-[1.08] tracking-tight">
@@ -372,50 +359,47 @@
                 <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-16">
                         <h2 class="text-3xl md:text-4xl font-bold mb-4">Global Reach, <span class="text-gradient">Proven Results</span></h2>
-                        <p class="text-slate-400 text-lg max-w-2xl mx-auto">Over 50+ international brands have trusted us to scale their operations across Europe, USA, and the Middle East.</p>
+                        <p class="text-slate-400 text-lg max-w-2xl mx-auto">Over 50+ international brands have trusted us to scale their operations globally.</p>
                     </div>
 
-                    <!-- 2 Rows, 5 Columns Grid -->
+                    <!-- Updated Grid with Correct Client Logo Filenames -->
                     <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
-                        <!-- Top Row (5 items) -->
                         <div class="client-logo-wrapper">
-                            <img src="client1.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+1'">
+                            <img src="dmclogo.webp" alt="DMC" class="client-logo-img">
                         </div>
                         <div class="client-logo-wrapper">
-                            <img src="client2.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+2'">
+                            <img src="granthorntonlogo.webp" alt="Grant Thornton" class="client-logo-img">
                         </div>
                         <div class="client-logo-wrapper">
-                            <img src="client3.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+3'">
+                            <img src="pgclogo.webp" alt="PGC" class="client-logo-img">
                         </div>
                         <div class="client-logo-wrapper">
-                            <img src="client4.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+4'">
+                            <img src="promedlogo.webp" alt="Promed" class="client-logo-img">
                         </div>
                         <div class="client-logo-wrapper">
-                            <img src="client5.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+5'">
-                        </div>
-
-                        <!-- Bottom Row (5 items) -->
-                        <div class="client-logo-wrapper">
-                            <img src="client6.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+6'">
+                            <img src="ramilogo.webp" alt="Rami" class="client-logo-img">
                         </div>
                         <div class="client-logo-wrapper">
-                            <img src="client7.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+7'">
+                            <img src="shadilogo.webp" alt="Shadi" class="client-logo-img">
                         </div>
                         <div class="client-logo-wrapper">
-                            <img src="client8.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+8'">
+                            <img src="therapylogo.webp" alt="Therapy" class="client-logo-img">
                         </div>
                         <div class="client-logo-wrapper">
-                            <img src="client9.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+9'">
+                            <img src="tradylogo.webp" alt="Trady" class="client-logo-img">
                         </div>
                         <div class="client-logo-wrapper">
-                            <img src="client10.png" alt="Client Logo" class="client-logo-img" onerror="this.src='https://via.placeholder.com/150x50/030712/FFFFFF?text=Brand+10'">
+                            <img src="tuttilogo.webp" alt="Tutti" class="client-logo-img">
+                        </div>
+                        <div class="client-logo-wrapper">
+                            <img src="uvalogo.webp" alt="UVA" class="client-logo-img">
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Services -->
-            <section id="services" class="py-24 px-6 relative overflow-hidden">
+            <section id="services" class="py-24 px-6 relative">
                 <div class="max-w-7xl mx-auto">
                     <div class="mb-16">
                         <h2 class="text-3xl md:text-4xl font-bold">Our Core <span class="text-gradient">Expertise</span></h2>
@@ -424,7 +408,7 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="md:col-span-2 glass p-8 md:p-12 hover:border-blue-500/50 transition-all group">
-                            <div class="w-12 h-12 rounded-xl bg-[rgba(2,58,255,0.18)] border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <div class="w-12 h-12 rounded-xl bg-[rgba(2,58,255,0.18)] border border-white/10 flex items-center justify-center mb-6">
                                 <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
                             </div>
                             <h3 class="text-2xl font-bold mb-4">Meta Advertising</h3>
@@ -437,36 +421,17 @@
                             </ul>
                         </div>
 
-                        <div class="glass p-8 hover:border-cyan-500/50 transition-all group">
-                            <div class="w-12 h-12 rounded-xl bg-[rgba(34,211,238,0.12)] border border-white/10 flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform">
-                                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z"></path></svg>
-                            </div>
+                        <div class="glass p-8 hover:border-cyan-500/50 transition-all">
                             <h3 class="text-xl font-bold mb-4">TikTok Ads</h3>
                             <p class="text-slate-400 text-sm">Creative-first campaigns designed to earn attention with native UGC assets and Spark Ads.</p>
                         </div>
-
-                        <div class="glass p-8 hover:border-blue-400/50 transition-all group">
-                            <div class="w-12 h-12 rounded-xl bg-[rgba(255,255,255,0.05)] border border-white/10 flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                            </div>
-                            <h3 class="text-xl font-bold mb-4">Google Search & PMax</h3>
+                        <div class="glass p-8 hover:border-white/20 transition-all">
+                            <h3 class="text-xl font-bold mb-4">Google Search</h3>
                             <p class="text-slate-400 text-sm">Capturing high-intent demand through precision keyword targeting and Performance Max optimization.</p>
                         </div>
-
-                        <div class="glass p-8 hover:border-purple-400/50 transition-all group">
-                            <div class="w-12 h-12 rounded-xl bg-[rgba(168,85,247,0.12)] border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                            </div>
+                        <div class="glass p-8 hover:border-purple-400/50 transition-all">
                             <h3 class="text-xl font-bold mb-4">CRO & Landing Pages</h3>
                             <p class="text-slate-400 text-sm">We don't just send traffic; we help you convert it with high-performance landing page architecture.</p>
-                        </div>
-
-                        <div class="glass p-8 hover:border-yellow-400/50 transition-all group">
-                            <div class="w-12 h-12 rounded-xl bg-[rgba(251,191,36,0.12)] border border-white/10 flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
-                                <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-                            </div>
-                            <h3 class="text-xl font-bold mb-4">Creative Strategy</h3>
-                            <p class="text-slate-400 text-sm">Briefing and managing UGC creators to produce high-impact ads that bypass "ad-blindness".</p>
                         </div>
                     </div>
                 </div>
@@ -477,43 +442,42 @@
                 <div class="max-w-7xl mx-auto">
                     <div class="mb-16 text-center">
                         <h2 class="text-3xl md:text-5xl font-bold mb-4">Client <span class="text-gradient">Success Stories</span></h2>
-                        <p class="text-slate-400 max-w-xl mx-auto">Don't just take our word for it. Here's what our partners say about the TDMedia impact.</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="glass p-8 review-card flex flex-col h-full">
+                        <div class="glass p-8 review-card">
                             <div class="flex items-center gap-4 mb-6">
-                                <img src="drfiras.webp" alt="Dr. Firas" class="w-14 h-14 rounded-full border border-blue-500/30 object-cover">
+                                <img src="drfiras.webp" alt="Reviewer" class="w-14 h-14 rounded-full border border-blue-500/30 object-cover">
                                 <div>
                                     <h4 class="font-bold text-lg">Dr. Firas</h4>
                                     <p class="text-xs text-blue-400 font-semibold uppercase tracking-wider">Aesthetic Medicine</p>
                                 </div>
                             </div>
-                            <p class="text-slate-300 italic leading-relaxed mb-6 flex-grow">"Working with Tudor and his team has transformed our digital presence. Our booking rate increased by over 40% in just three months."</p>
+                            <p class="text-slate-300 italic leading-relaxed mb-6">"Working with Tudor and his team has transformed our digital presence. Our booking rate increased by over 40% in just three months."</p>
                             <div class="flex text-yellow-500 gap-1">★ ★ ★ ★ ★</div>
                         </div>
 
-                        <div class="glass p-8 review-card flex flex-col h-full">
+                        <div class="glass p-8 review-card">
                             <div class="flex items-center gap-4 mb-6">
-                                <img src="julietageoroiu.webp" alt="Julieta Georoiu" class="w-14 h-14 rounded-full border border-cyan-500/30 object-cover">
+                                <img src="julietageoroiu.webp" alt="Reviewer" class="w-14 h-14 rounded-full border border-cyan-500/30 object-cover">
                                 <div>
                                     <h4 class="font-bold text-lg">Julieta Georoiu</h4>
                                     <p class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">Education & Arts</p>
                                 </div>
                             </div>
-                            <p class="text-slate-300 italic leading-relaxed mb-6 flex-grow">"The level of transparency TDMedia provides is unmatched. Weekly reports that actually make sense and a strategy that consistently brings in high-quality leads."</p>
+                            <p class="text-slate-300 italic leading-relaxed mb-6">"The level of transparency TDMedia provides is unmatched. Weekly reports that actually make sense and a strategy that consistently brings results."</p>
                             <div class="flex text-yellow-500 gap-1">★ ★ ★ ★ ★</div>
                         </div>
 
-                        <div class="glass p-8 review-card flex flex-col h-full">
+                        <div class="glass p-8 review-card">
                             <div class="flex items-center gap-4 mb-6">
-                                <img src="bogdanpromed.webp" alt="Bogdan Promed" class="w-14 h-14 rounded-full border border-purple-500/30 object-cover">
+                                <img src="bogdanpromed.webp" alt="Reviewer" class="w-14 h-14 rounded-full border border-purple-500/30 object-cover">
                                 <div>
                                     <h4 class="font-bold text-lg">Bogdan Promed</h4>
                                     <p class="text-xs text-purple-400 font-semibold uppercase tracking-wider">Health Services</p>
                                 </div>
                             </div>
-                            <p class="text-slate-300 italic leading-relaxed mb-6 flex-grow">"They didn't just run ads; they optimized our entire funnel. From landing page tweaks to creative strategy, TDMedia looks at the bigger picture."</p>
+                            <p class="text-slate-300 italic leading-relaxed mb-6">"They didn't just run ads; they optimized our entire funnel. From landing page tweaks to creative strategy, TDMedia looks at the bigger picture."</p>
                             <div class="flex text-yellow-500 gap-1">★ ★ ★ ★ ★</div>
                         </div>
                     </div>
@@ -522,10 +486,9 @@
 
             <!-- Contact Section -->
             <section id="contact" class="py-24 px-6 relative overflow-hidden">
-                <div class="form-glow -top-20 -left-20"></div>
                 <div class="max-w-7xl mx-auto">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-                        <div class="lg:col-span-5 space-y-10 lg:pr-8">
+                        <div class="lg:col-span-5 space-y-10">
                             <div>
                                 <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
                                     Let's have a <span class="text-gradient">chat</span>
@@ -537,7 +500,7 @@
 
                             <div class="space-y-8">
                                 <div class="flex items-center gap-5 group">
-                                    <div class="w-14 h-14 rounded-2xl glass flex items-center justify-center text-cyan-400 group-hover:bg-cyan-600/20 transition-all">
+                                    <div class="w-14 h-14 rounded-2xl glass flex items-center justify-center text-cyan-400">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z"></path></svg>
                                     </div>
                                     <div>
@@ -546,26 +509,9 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Social Media Icons (Contact) -->
-                            <div class="pt-4">
-                                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Follow our journey</p>
-                                <div class="flex gap-4">
-                                    <a href="https://www.facebook.com/p/TD-Media-Agency-61567419676481/" target="_blank" class="social-glass" title="Facebook">
-                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.325-.597 1.325-1.326V1.326C24 .597 23.403 0 22.675 0z"/></svg>
-                                    </a>
-                                    <a href="https://www.linkedin.com/company/tdmediagency/" target="_blank" class="social-glass" title="LinkedIn">
-                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
-                                    </a>
-                                    <a href="https://www.instagram.com/tdmedia.io/" target="_blank" class="social-glass" title="Instagram">
-                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="lg:col-span-7 relative group">
-                            <div class="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-[32px] blur-2xl opacity-40 group-hover:opacity-60 transition duration-500"></div>
                             <div class="glass p-2 md:p-4 shadow-2xl relative overflow-hidden min-h-[500px] w-full">
                                 <iframe src="https://api.leadconnectorhq.com/widget/form/Nh6UzlGw2DLIwNIPU9JD" style="width:100%;height:100%;min-height:460px;border:none;border-radius:18px" id="inline-Nh6UzlGw2DLIwNIPU9JD"></iframe>
                                 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
@@ -581,47 +527,41 @@
             <section class="pt-32 pb-20 px-6">
                 <div class="max-w-7xl mx-auto">
                     <div class="mb-14 text-center">
-                        <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold tracking-wide text-cyan-100 chip mb-6">
-                            Expert-Level Management
-                        </div>
                         <h1 class="text-5xl md:text-7xl font-extrabold mb-5">The Brains Behind <span class="text-gradient">TDMedia</span></h1>
-                        <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">Meet the specialized strike team of performance marketers and creative directors.</p>
+                        <p class="text-lg text-slate-400 max-w-2xl mx-auto">Meet the specialized strike team of performance marketers and creative directors.</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div class="glass overflow-hidden flex flex-col group hover:border-blue-500/40 transition-all">
                             <div class="team-image-container relative overflow-hidden">
                                 <img src="tudordumitru.webp" alt="Tudor Dumitru" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-60"></div>
                             </div>
                             <div class="p-6 text-left">
                                 <p class="text-blue-400 font-bold tracking-widest uppercase text-[10px] mb-2">Founder & Strategy Lead</p>
                                 <h3 class="text-xl font-extrabold mb-2">Tudor Dumitru</h3>
-                                <p class="text-slate-400 text-xs leading-relaxed">Architect of ROI-focused systems. 7+ years of scaling brands across global markets.</p>
+                                <p class="text-slate-400 text-xs leading-relaxed">Architect of ROI-focused systems with a focus on global scaling.</p>
                             </div>
                         </div>
 
                         <div class="glass overflow-hidden flex flex-col group hover:border-cyan-500/40 transition-all">
                             <div class="team-image-container relative overflow-hidden">
                                 <img src="filipe.webp" alt="Filipe Garcia" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-60"></div>
                             </div>
                             <div class="p-6 text-left">
                                 <p class="text-cyan-400 font-bold tracking-widest uppercase text-[10px] mb-2">Head of Media Buying</p>
                                 <h3 class="text-xl font-extrabold mb-2">Filipe Garcia</h3>
-                                <p class="text-slate-400 text-xs leading-relaxed">Technical expert in pixel infrastructure and high-budget scaling strategies.</p>
+                                <p class="text-slate-400 text-xs leading-relaxed">Technical expert in pixel infrastructure and high-budget scaling.</p>
                             </div>
                         </div>
 
                         <div class="glass overflow-hidden flex flex-col group hover:border-purple-500/40 transition-all">
                             <div class="team-image-container relative overflow-hidden">
                                 <img src="vanessa.webp" alt="Vanessa Geambașu" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-60"></div>
                             </div>
                             <div class="p-6 text-left">
                                 <p class="text-purple-400 font-bold tracking-widest uppercase text-[10px] mb-2">Content Strategy Manager</p>
                                 <h3 class="text-xl font-extrabold mb-2">Vanessa Geambașu</h3>
-                                <p class="text-slate-400 text-xs leading-relaxed">Master of the attention economy. Specializes in direct-response creative.</p>
+                                <p class="text-slate-400 text-xs leading-relaxed">Master of the attention economy and direct-response creative.</p>
                             </div>
                         </div>
                     </div>
@@ -630,79 +570,50 @@
         </main>
 
         <!-- MODERN FOOTER -->
-        <footer class="py-20 px-6 relative bg-[#030712] border-t border-white/5 overflow-hidden">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full"></div>
-            
-            <div class="max-w-7xl mx-auto relative z-10">
+        <footer class="py-20 px-6 relative bg-[#030712] border-t border-white/5">
+            <div class="max-w-7xl mx-auto">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start mb-16">
                     <div class="lg:col-span-4">
                         <a href="javascript:void(0)" onclick="navigateTo('home')" class="inline-block mb-6">
                             <img src="tmp5js368bu (1).webp" alt="TD Media" class="h-8 w-auto">
                         </a>
                         <p class="text-slate-400 text-base max-w-sm leading-relaxed mb-8">
-                            A performance-first digital agency helping innovative brands dominate their markets through precision advertising and creative excellence.
+                            A performance-first digital agency helping innovative brands dominate their markets.
                         </p>
                         <div class="flex gap-4">
-                            <a href="https://www.facebook.com/p/TD-Media-Agency-61567419676481/" target="_blank" class="social-glass" title="Facebook">
+                            <a href="https://www.facebook.com/p/TD-Media-Agency-61567419676481/" target="_blank" class="social-glass">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.325-.597 1.325-1.326V1.326C24 .597 23.403 0 22.675 0z"/></svg>
                             </a>
-                            <a href="https://www.linkedin.com/company/tdmediagency/" target="_blank" class="social-glass" title="LinkedIn">
+                            <a href="https://www.linkedin.com/company/tdmediagency/" target="_blank" class="social-glass">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
-                            </a>
-                            <a href="https://www.instagram.com/tdmedia.io/" target="_blank" class="social-glass" title="Instagram">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                             </a>
                         </div>
                     </div>
 
                     <div class="lg:col-span-2 lg:ml-auto">
                         <h4 class="text-white font-bold mb-6">Navigation</h4>
-                        <ul class="space-y-4 text-slate-400">
+                        <ul class="space-y-4 text-slate-400 text-sm">
                             <li><a href="javascript:void(0)" onclick="navigateTo('home')" class="hover:text-white transition-colors">Home</a></li>
                             <li><a href="javascript:void(0)" onclick="navigateTo('home', 'services')" class="hover:text-white transition-colors">Services</a></li>
-                            <li><a href="javascript:void(0)" onclick="navigateTo('home', 'portfolio')" class="hover:text-white transition-colors">Portfolio</a></li>
-                            <li><a href="javascript:void(0)" onclick="navigateTo('home', 'reviews')" class="hover:text-white transition-colors">Reviews</a></li>
                             <li><a href="javascript:void(0)" onclick="navigateTo('team')" class="hover:text-white transition-colors">Our Team</a></li>
                         </ul>
                     </div>
 
                     <div class="lg:col-span-3">
                         <h4 class="text-white font-bold mb-6">Connect</h4>
-                        <ul class="space-y-4 text-slate-400">
+                        <ul class="space-y-4 text-slate-400 text-sm">
                             <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-blue-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z"></path></svg>
                                 <a href="mailto:agencytdmedia@gmail.com" class="hover:text-white transition-colors">agencytdmedia@gmail.com</a>
                             </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-blue-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                <div>
-                                    <p class="mb-1">Amsterdam, Netherlands</p>
-                                    <p>Bucharest, Romania</p>
-                                </div>
-                            </li>
+                            <li>Amsterdam | Bucharest</li>
                         </ul>
-                    </div>
-
-                    <div class="lg:col-span-3">
-                        <div class="glass p-6 border-blue-500/20">
-                            <h4 class="text-white font-bold mb-3">Scale your brand</h4>
-                            <p class="text-slate-400 text-sm mb-5">Ready for the next level? Book your audit.</p>
-                            <a href="https://calendly.com/tudordumitru/discovery-call" target="_blank" class="block text-center w-full rounded-xl py-3 text-sm font-bold text-white btn-primary">
-                                Book Now
-                            </a>
-                        </div>
                     </div>
                 </div>
 
                 <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p class="text-slate-500 text-sm">
+                    <p class="text-slate-500 text-xs">
                         © 2025 TDMedia. All rights reserved.
                     </p>
-                    <div class="flex gap-8 text-slate-500 text-xs uppercase tracking-widest font-bold">
-                        <a href="javascript:void(0)" class="hover:text-white transition-colors">Privacy</a>
-                        <a href="javascript:void(0)" class="hover:text-white transition-colors">Terms</a>
-                        <a href="javascript:void(0)" class="hover:text-white transition-colors">Cookies</a>
-                    </div>
                 </div>
             </div>
         </footer>
