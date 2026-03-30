@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Client</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0b1020] text-white min-h-screen p-8">
+
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-4xl font-bold mb-8">Dashboard Client</h1>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+        <p class="text-white/60 text-sm">Total Leads</p>
+        <h2 id="leads" class="text-4xl font-bold mt-2">-</h2>
+      </div>
+
+      <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+        <p class="text-white/60 text-sm">Bookings</p>
+        <h2 id="bookings" class="text-4xl font-bold mt-2">-</h2>
+      </div>
+
+      <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+        <p class="text-white/60 text-sm">Show-ups</p>
+        <h2 id="showups" class="text-4xl font-bold mt-2">-</h2>
+      </div>
+
+      <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+        <p class="text-white/60 text-sm">Booking Rate</p>
+        <h2 id="bookingRate" class="text-4xl font-bold mt-2">-</h2>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+      <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+        <p class="text-white/60 text-sm">Show-up Rate</p>
+        <h2 id="showupRate" class="text-3xl font-bold mt-2">-</h2>
+      </div>
+
+      <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+        <p class="text-white/60 text-sm">Cost / Lead</p>
+        <h2 id="costPerLead" class="text-3xl font-bold mt-2">-</h2>
+      </div>
+
+      <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+        <p class="text-white/60 text-sm">Cost / Booking</p>
+        <h2 id="costPerBooking" class="text-3xl font-bold mt-2">-</h2>
+      </div>
+
+      <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+        <p class="text-white/60 text-sm">ROI</p>
+        <h2 id="roi" class="text-3xl font-bold mt-2">-</h2>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbwwRvYOnPaj0tzTGw0nM1aC8lzVn9y2bwCqqAHwNkhfyn5AGOcn4J-Nzl1x-uF22PN8Sg/exec";
+
+    function formatPercent(value) {
+      if (value === "" || value === null || value === undefined) return "-";
+      const num = Number(value);
+      if (isNaN(num)) return value;
+      return num.toFixed(2) + "%";
+    }
+
+    function formatValue(value) {
+      if (value === "" || value === null || value === undefined) return "-";
+      return value;
+    }
+
+    async function loadData() {
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+
+        document.getElementById("leads").textContent = formatValue(data.leads);
+        document.getElementById("bookings").textContent = formatValue(data.bookings);
+        document.getElementById("showups").textContent = formatValue(data.showups);
+        document.getElementById("bookingRate").textContent = formatPercent(data.bookingRate);
+        document.getElementById("showupRate").textContent = formatPercent(data.showupRate);
+        document.getElementById("costPerLead").textContent = formatValue(data.costPerLead);
+        document.getElementById("costPerBooking").textContent = formatValue(data.costPerBooking);
+        document.getElementById("roi").textContent = formatValue(data.roi);
+      } catch (error) {
+        console.error("Eroare la încărcarea datelor:", error);
+      }
+    }
+
+    loadData();
+    setInterval(loadData, 30000);
+  </script>
+
+</body>
+</html>
