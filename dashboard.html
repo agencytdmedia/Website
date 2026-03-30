@@ -54,6 +54,15 @@
         <h2 id="roi" class="text-3xl font-bold mt-2">-</h2>
       </div>
     </div>
+
+    <div class="mt-8">
+      <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+        <p class="text-white/60 text-sm mb-3">AI Insight</p>
+        <div id="aiInsight" class="text-lg leading-8 text-white/90">
+          Se încarcă analiza AI...
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -63,7 +72,7 @@
       if (value === "" || value === null || value === undefined) return "-";
       const num = Number(value);
       if (isNaN(num)) return value;
-      return num.toFixed(2) + "%";
+      return (num * 100).toFixed(2) + "%";
     }
 
     function formatValue(value) {
@@ -84,13 +93,15 @@
         document.getElementById("costPerLead").textContent = formatValue(data.costPerLead);
         document.getElementById("costPerBooking").textContent = formatValue(data.costPerBooking);
         document.getElementById("roi").textContent = formatValue(data.roi);
+        document.getElementById("aiInsight").textContent = data.aiInsight ?? "Fără insight AI momentan.";
       } catch (error) {
         console.error("Eroare la încărcarea datelor:", error);
+        document.getElementById("aiInsight").textContent = "Nu s-a putut încărca analiza AI.";
       }
     }
 
     loadData();
-    setInterval(loadData, 30000);
+    setInterval(loadData, 300000);
   </script>
 
 </body>
