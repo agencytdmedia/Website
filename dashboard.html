@@ -11,6 +11,7 @@
   <div class="max-w-7xl mx-auto">
     <h1 class="text-4xl font-bold mb-8">Dashboard Client</h1>
 
+    <!-- METRICS -->
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
       <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
         <p class="text-white/60 text-sm">Total Leads</p>
@@ -55,11 +56,23 @@
       </div>
     </div>
 
+    <!-- BUTTON -->
     <div class="mt-8">
+      <button
+        id="generateAiButton"
+        onclick="generateAIReport()"
+        class="rounded-full px-8 py-4 text-lg font-semibold text-white border border-blue-400/40 bg-gradient-to-r from-blue-600 to-blue-500 shadow-[0_0_30px_rgba(37,99,235,0.35)] hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(37,99,235,0.5)] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        Generate AI Report
+      </button>
+    </div>
+
+    <!-- AI INSIGHT -->
+    <div class="mt-6">
       <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
         <p class="text-white/60 text-sm mb-3">AI Insight</p>
         <div id="aiInsight" class="text-lg leading-8 text-white/90">
-          Se încarcă analiza AI...
+          Apasă pe "Generate AI Report"
         </div>
       </div>
     </div>
@@ -80,7 +93,8 @@
       return value;
     }
 
-    async function loadData() {
+    // LOAD METRICS (fără AI)
+    async function loadMetrics() {
       try {
         const res = await fetch(API_URL);
         const data = await res.json();
@@ -93,15 +107,38 @@
         document.getElementById("costPerLead").textContent = formatValue(data.costPerLead);
         document.getElementById("costPerBooking").textContent = formatValue(data.costPerBooking);
         document.getElementById("roi").textContent = formatValue(data.roi);
-        document.getElementById("aiInsight").textContent = data.aiInsight ?? "Fără insight AI momentan.";
+
       } catch (error) {
-        console.error("Eroare la încărcarea datelor:", error);
-        document.getElementById("aiInsight").textContent = "Nu s-a putut încărca analiza AI.";
+        console.error("Eroare la metrici:", error);
       }
     }
 
-    loadData();
-    setInterval(loadData, 300000);
+    // GENERATE AI (doar la click)
+    async function generateAIReport() {
+      const aiInsight = document.getElementById("aiInsight");
+      const button = document.getElementById("generateAiButton");
+
+      try {
+        aiInsight.textContent = "Se generează raportul AI...";
+        button.disabled = true;
+        button.textContent = "Generating...";
+
+        const res = await fetch(API_URL);
+        const data = await res.json();
+
+        aiInsight.textContent = data.aiInsight ?? "Nu există raport AI.";
+
+      } catch (error) {
+        console.error("Eroare AI:", error);
+        aiInsight.textContent = "Nu s-a putut genera raportul AI.";
+      } finally {
+        button.disabled = false;
+        button.textContent = "Generate AI Report";
+      }
+    }
+
+    loadMetrics();
+    setInterval(loadMetrics, 300000); // refresh la 5 min
   </script>
 
 </body>
